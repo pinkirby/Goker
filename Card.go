@@ -1,27 +1,22 @@
-package Goker
+package goker
 
-type Suit int8
-
-const (
-	Clubs Suit = iota
-	Diamonds
-	Hearts
-	Spades
-)
-
-var SuitStringRep map[Suit]string = map[Suit]string{
-	Clubs:    "clubs",
-	Diamonds: "diamonds",
-	Hearts:   "hearts",
-	Spades:   "spades",
-}
+import "fmt"
 
 type Card struct {
 	powerVal    int8
 	straightVal int8
 	fullName    string
-	smallRep    string
-	suit        Suit
+	shortRep    string
+	suit        *Suit
+	category    string
+}
+
+func (*Card) IsValid() bool {
+	return true
+}
+
+func (c *Card) ToString() string {
+	return fmt.Sprintf("%s", c.fullName)
 }
 
 func compareCards(firstCard Card, secondCard Card) int8 {
